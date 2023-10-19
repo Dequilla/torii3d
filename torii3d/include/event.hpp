@@ -17,6 +17,7 @@ namespace torii
     struct MouseMovedEvent
     {
         Vec2<int64_t> position;
+        Vec2<int64_t> abs_position;
     };
 
     struct MouseScrollEvent

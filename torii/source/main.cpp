@@ -19,7 +19,6 @@ int main(int argc, char** argv)
             {
                 case torii::EventType::Close:
                     std::cout << "We are leaving boiiisss!" << std::endl;
-                    continue;
                 break;
                 case torii::EventType::KeyPressed:
                     std::cout << "KeyPressed: " << static_cast<unsigned int>(event.key.code) << std::endl;
@@ -28,7 +27,7 @@ int main(int argc, char** argv)
                     std::cout << "KeyReleased: " << (unsigned int)event.key.code << std::endl;
                 break;
                 case torii::EventType::MouseMoved:
-                    std::cout << "X: " << event.mouseMoved.position.x << ", Y:" << event.mouseMoved.position.y << std::endl;
+                    std::cout << "X: " << event.mouseMoved.position.x << ", Y:" << event.mouseMoved.position.y << " - ABS X: " << event.mouseMoved.abs_position.x << ", Y:" << event.mouseMoved.abs_position.y << std::endl;
                 break;
                 
             }

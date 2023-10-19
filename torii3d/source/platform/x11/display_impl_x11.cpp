@@ -63,13 +63,8 @@ namespace torii
                     }
                 break;
                 case KeyPress:
-                    event.type = EventType::KeyPressed;
-                    event.key.code = static_cast<torii::KeyCode>(xevent.xkey.keycode);
-
-                    return true;
-                break;
                 case KeyRelease:
-                    event.type = EventType::KeyReleased;
+                    event.type = (xevent.xkey.type == KeyPress ? EventType::KeyPressed : EventType::KeyReleased);
                     event.key.code = static_cast<torii::KeyCode>(xevent.xkey.keycode);
 
                     return true;
@@ -78,6 +73,9 @@ namespace torii
                     event.type = EventType::MouseMoved;
                     event.mouseMoved.position.x = static_cast<int64_t>(xevent.xmotion.x);
                     event.mouseMoved.position.y = static_cast<int64_t>(xevent.xmotion.y);
+                    
+                    event.mouseMoved.abs_position.x = static_cast<int64_t>(xevent.xmotion.x_root);
+                    event.mouseMoved.abs_position.y = static_cast<int64_t>(xevent.xmotion.y_root);
                     
                     return true;
                 break;
