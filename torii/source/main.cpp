@@ -1,6 +1,9 @@
 #include <iostream>
 
-#define X11_ENABLED 1
+#include "settings.hpp"
+#if OPENGL_ENABLED == 1
+#include <GL/gl.h>
+#endif
 
 #include "display.hpp"
 
@@ -12,6 +15,18 @@ int main(int argc, char** argv)
 
     while( display.isOpen() )
     {
+        display.initFrame();
+        display.clear();
+
+        glBegin(GL_TRIANGLES);
+			glColor3f(  1.0f,  0.0f, 0.0f);
+			glVertex3f( 0.0f, -1.0f, 0.0f);
+			glColor3f(  0.0f,  1.0f, 0.0f);
+			glVertex3f(-1.0f,  1.0f, 0.0f);
+			glColor3f(  0.0f,  0.0f, 1.0f);
+			glVertex3f( 1.0f,  1.0f, 0.0f);
+		glEnd();
+
         torii::Event event;
         while(display.pollEvent(event))
         {
@@ -32,6 +47,8 @@ int main(int argc, char** argv)
                 
             }
         }
+
+        display.presentFrame();
     }
 
     return 0;

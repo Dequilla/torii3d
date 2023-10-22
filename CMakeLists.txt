@@ -60,6 +60,17 @@ if(NOT X11_FOUND)
     message(SEND_ERROR "Not found: X11")
 endif()
 
+find_package(OpenGL)
+if(NOT OPENGL_FOUND)
+    message(SEND_ERROR "Not found: OpenGL")
+endif()
+
+set(
+    LIBRARIES_TO_LINK
+    ${OPENGL_LIBRARIES}
+    ${X11_X11_LIB}
+)
+
 ######################################
 # Definitions
 ######################################
@@ -67,7 +78,7 @@ endif()
 # Library
 add_library(${LIBRARY_NAME} SHARED ${FILES_LIBRARY})
 target_include_directories(${LIBRARY_NAME} PRIVATE ${LIBRARY_INCLUDE_FOLDER})
-target_link_libraries(${LIBRARY_NAME} ${X11_X11_LIB})
+target_link_libraries(${LIBRARY_NAME} ${LIBRARIES_TO_LINK})
 set_property(TARGET ${LIBRARY_NAME} PROPERTY CXX_STANDARD 20)
 
 # Executable

@@ -21,6 +21,9 @@ namespace torii
 
         bool isOpen();
 
+        void initFrame();
+        void clear();
+        void presentFrame();
         bool pollEvent(Event& event);
     };
 

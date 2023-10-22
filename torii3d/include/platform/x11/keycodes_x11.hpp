@@ -8,7 +8,7 @@ namespace torii
 {
     enum class KeyCode : unsigned int
     {
-       None = 0x00 
+       
     };
 }
 #endif

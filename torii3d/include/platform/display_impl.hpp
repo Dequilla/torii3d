@@ -9,6 +9,10 @@
 
 namespace torii
 {
+    enum class DisplayRenderAPI
+    {
+        OpenGL
+    };
 
     class DisplayImpl
     {
@@ -18,9 +22,12 @@ namespace torii
     public:
         bool isOpen();
 
-        virtual void create(std::string title, Vec2<uint64_t> position, Vec2<uint64_t> size) = 0;
+        virtual void create(std::string title, Vec2<uint64_t> position, Vec2<uint64_t> size, DisplayRenderAPI api = DisplayRenderAPI::OpenGL) = 0;
         virtual void close() = 0;
+        virtual void initFrame() = 0;
+        virtual void clear() = 0;  
         virtual bool pollEvent(Event& event) = 0;
+        virtual void presentFrame() = 0;
     };
 
 }

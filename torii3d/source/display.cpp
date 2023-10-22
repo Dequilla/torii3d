@@ -24,6 +24,21 @@ namespace torii
         return m_displayImpl->isOpen();
     }
 
+    void Display::initFrame()
+    {
+        m_displayImpl->initFrame();
+    }
+
+    void Display::clear()
+    {
+        m_displayImpl->clear();
+    }
+   
+    void Display::presentFrame()
+    {
+        m_displayImpl->presentFrame();
+    }
+
     bool Display::pollEvent(Event& event)
     {
        return m_displayImpl->pollEvent(event);
