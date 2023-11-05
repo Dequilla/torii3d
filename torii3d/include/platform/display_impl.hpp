@@ -6,6 +6,7 @@
 
 #include "math.hpp"
 #include "event.hpp"
+#include "color.hpp"
 
 namespace torii
 {
@@ -18,9 +19,11 @@ namespace torii
     {
     protected:
         bool m_isOpen = false;
+        Color m_clearColor;
 
     public:
         bool isOpen();
+        virtual void setClearColor(Color color);
 
         virtual void create(std::string title, Vec2<uint64_t> position, Vec2<uint64_t> size, DisplayRenderAPI api = DisplayRenderAPI::OpenGL) = 0;
         virtual void close() = 0;

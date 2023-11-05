@@ -32,6 +32,8 @@ namespace torii
 #endif
 
     public:
+        void setClearColor(Color color) override;
+
         void create(std::string title, Vec2<uint64_t> position, Vec2<uint64_t> size, DisplayRenderAPI api) override;
         void close() override;
         void initFrame() override;

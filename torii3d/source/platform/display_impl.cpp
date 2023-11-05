@@ -6,4 +6,10 @@ namespace torii
     {
         return m_isOpen;
     }
+
+    void DisplayImpl::setClearColor(Color color)
+    {
+        m_clearColor = color;
+    }
+
 }

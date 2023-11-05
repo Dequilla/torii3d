@@ -3,9 +3,9 @@
 #include <iostream>
 #include <stdexcept>
 
-
 #include "event.hpp"
 #include "utility.hpp"
+#include "logger.hpp"
 
 namespace torii
 {
@@ -48,9 +48,15 @@ namespace torii
     }
 #endif
 
+    void DisplayImplX11::setClearColor(Color color)
+    {
+        DisplayImpl::setClearColor(color);
+        glClearColor(color.r, color.g, color.b, color.a);
+    }
+
     void DisplayImplX11::create(std::string title, Vec2<uint64_t> position, Vec2<uint64_t> size, DisplayRenderAPI api)
     {
-        // TODO(edwin): Fortsätt på denna: https://github.com/gamedevtech/X11OpenGLWindow
+        // Based on: https://github.com/gamedevtech/X11OpenGLWindow
 
         m_display = XOpenDisplay(NULL);
         if (NULL == m_display) {  
@@ -74,12 +80,12 @@ namespace torii
 	    m_glContext = glXCreateContext(m_display, m_visualInfo, NULL, GL_TRUE);
 	    glXMakeCurrent(m_display, m_window, m_glContext);
 
-        std::cout << "GL Vendor: " << glGetString(GL_VENDOR) << "\n";
-	    std::cout << "GL Renderer: " << glGetString(GL_RENDERER) << "\n";
-	    std::cout << "GL Version: " << glGetString(GL_VERSION) << "\n";
-	    std::cout << "GL Shading Language: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << "\n";
+        torii::trace({"GL Vendor: ", std::string((const char*)glGetString(GL_VENDOR))}, "opengl");
+	    torii::trace({"GL Renderer: ", std::string((const char*)glGetString(GL_RENDERER))}, "opengl");
+	    torii::trace({"GL Version: ", std::string((const char*)glGetString(GL_VERSION))}, "opengl");
+	    torii::trace({"GL Shading Language: ", std::string((const char*)glGetString(GL_SHADING_LANGUAGE_VERSION))}, "opengl");
 
-	    glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
+        setClearColor(torii::Color(0.f));
 #endif
 	    // Show the window
 	    XClearWindow(m_display, m_window);

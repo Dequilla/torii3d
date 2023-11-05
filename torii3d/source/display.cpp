@@ -1,5 +1,7 @@
 #include "display.hpp"
 
+#include "logger.hpp"
+
 #include "platform/x11/display_impl_x11.hpp"
 
 namespace torii
@@ -22,6 +24,11 @@ namespace torii
     bool Display::isOpen()
     {
         return m_displayImpl->isOpen();
+    }
+
+    void Display::setClearColor(Color color)
+    {
+        m_displayImpl->setClearColor(color);
     }
 
     void Display::initFrame()

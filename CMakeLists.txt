@@ -43,6 +43,8 @@ set(FILES_LIBRARY
     ${LIBRARY_FOLDER}/settings.cpp
     ${LIBRARY_FOLDER}/event.cpp
     ${LIBRARY_FOLDER}/utility.cpp
+    ${LIBRARY_FOLDER}/logger.cpp
+    ${LIBRARY_FOLDER}/color.cpp
 
     ${LIBRARY_FOLDER}/platform/display_impl.cpp
 

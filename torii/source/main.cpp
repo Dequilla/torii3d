@@ -5,13 +5,18 @@
 #include <GL/gl.h>
 #endif
 
+#include "logger.hpp"
+
 #include "display.hpp"
 
 #include "model.hpp"
 
 int main(int argc, char** argv)
 {
+    torii::trace({"Starting torii3d!"}, "system");
+
     torii::Display display("Test", {0, 0}, {1280, 720}); 
+    display.setClearColor({0.f, 0.f, 0.f, 1.f});
 
     while( display.isOpen() )
     {
@@ -33,16 +38,16 @@ int main(int argc, char** argv)
             switch(event.type)
             {
                 case torii::EventType::Close:
-                    std::cout << "We are leaving boiiisss!" << std::endl;
+                    torii::info({"We are leaving boiiisss!"});
                 break;
                 case torii::EventType::KeyPressed:
-                    std::cout << "KeyPressed: " << static_cast<unsigned int>(event.key.code) << std::endl;
+                    torii::info({"KeyPressed: ", std::to_string((uint64_t)event.key.code)});
                 break;
                 case torii::EventType::KeyReleased:
-                    std::cout << "KeyReleased: " << (unsigned int)event.key.code << std::endl;
+                    torii::info({"KeyReleased: ", std::to_string((uint64_t)event.key.code)});
                 break;
                 case torii::EventType::MouseMoved:
-                    std::cout << "X: " << event.mouseMoved.position.x << ", Y:" << event.mouseMoved.position.y << " - ABS X: " << event.mouseMoved.abs_position.x << ", Y:" << event.mouseMoved.abs_position.y << std::endl;
+                    torii::info({event.mouseMoved.position, " - ", event.mouseMoved.abs_position});
                 break;
                 
             }

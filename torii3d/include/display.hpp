@@ -20,6 +20,7 @@ namespace torii
         ~Display();
 
         bool isOpen();
+        void setClearColor(Color color);
 
         void initFrame();
         void clear();
