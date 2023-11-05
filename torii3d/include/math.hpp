@@ -17,7 +17,7 @@ namespace torii
         }
     };
 
-    struct Vec2d : public Vec2<double> {};
+    using Vec2d = Vec2<double>;
 
     template<typename Type>
     struct Vec3
@@ -30,7 +30,7 @@ namespace torii
         }
     };
 
-    struct Vec3d : public Vec3<double> {};
+    using Vec3d = Vec3<double>;
 
 }
 
