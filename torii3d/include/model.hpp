@@ -19,8 +19,6 @@ namespace torii
     {
         std::vector<Vertex> vertices;
         std::vector<uint64_t> indices;
-
-        uint64_t VBO, EBO;
     };
 
     inline Mesh temp_create_square()
@@ -56,6 +54,8 @@ namespace torii
             0, 2, 3,
             3, 2, 6
         };
+
+        return mesh;
     }
 
 }

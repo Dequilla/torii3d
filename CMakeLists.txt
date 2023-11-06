@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.16)
 
 #####################################
 # Variables
@@ -19,6 +19,8 @@ if (MSVC OR WIN32)
 elseif (UNIX)
     add_compile_definitions(__unix__)
 endif ()
+
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++2a")
 
 project(
     ${PROGRAM_NAME} 
@@ -45,6 +47,11 @@ set(FILES_LIBRARY
     ${LIBRARY_FOLDER}/utility.cpp
     ${LIBRARY_FOLDER}/logger.cpp
     ${LIBRARY_FOLDER}/color.cpp
+
+    ${LIBRARY_FOLDER}/ecs/entity.cpp
+    ${LIBRARY_FOLDER}/ecs/component.cpp 
+    ${LIBRARY_FOLDER}/ecs/system.cpp
+    ${LIBRARY_FOLDER}/ecs/world.cpp
 
     ${LIBRARY_FOLDER}/platform/display_impl.cpp
 

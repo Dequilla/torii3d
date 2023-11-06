@@ -11,8 +11,28 @@
 
 #include "model.hpp"
 
+
+#include "ecs/entity.hpp"
+#include "ecs/component.hpp"
+#include "ecs/world.hpp"
+
+struct TempComp
+{
+    int x, y;
+};
+
+struct TempComp2
+{
+    int x, y, z;
+};
+
 int main(int argc, char** argv)
 {
+    torii::World world;
+    torii::Handle h1 = world.entity(), h2 = world.entity();
+
+    torii::info({*world.entity(h1), *world.entity(h2)}, "testing");
+
     torii::trace({"Starting torii3d!"}, "system");
 
     torii::Display display("Test", {0, 0}, {1280, 720}); 

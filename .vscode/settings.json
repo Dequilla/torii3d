@@ -8,6 +8,9 @@
         "deque": "cpp",
         "list": "cpp",
         "string": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "optional": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
     }
 }
