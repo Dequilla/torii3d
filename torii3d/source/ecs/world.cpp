@@ -6,6 +6,14 @@ namespace torii
     {
     }
 
+    World::~World()
+    {
+        for(auto component : m_components)
+        {
+            delete component.second;
+        }
+    }
+
     Handle World::entity()
     {
         auto newEntity = m_entities.emplace(m_nextHandleEntity++, Entity()).first;

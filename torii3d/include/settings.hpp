@@ -5,4 +5,8 @@
 
 #define OPENGL_ENABLED 1
 
+#ifdef _DEBUG
+#define TORII_DEBUG
+#endif
+
 #endif // __TORII_SETTINGS_H__

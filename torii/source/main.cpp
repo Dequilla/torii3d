@@ -19,19 +19,37 @@
 struct TempComp
 {
     int x, y;
+
+    operator std::string() const {
+        return std::to_string(x) + ", " + std::to_string(y);
+    }
 };
 
 struct TempComp2
 {
     int x, y, z;
+
+    operator std::string() const {
+        return std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z);
+    }
 };
 
 int main(int argc, char** argv)
 {
     torii::World world;
-    torii::Handle h1 = world.entity(), h2 = world.entity();
+    world.registerComponentType<TempComp>();
+    world.registerComponentType<TempComp2>();
 
+    torii::Handle h1 = world.entity(), h2 = world.entity();
     torii::info({*world.entity(h1), *world.entity(h2)}, "testing");
+
+    torii::Handle comp1 = world.registerComponent(TempComp { 1, 2 });
+    torii::Handle comp2 = world.registerComponent(TempComp2 { 2, 3, 4 });
+    torii::info({std::to_string(comp1), " | ", std::to_string(comp2)}, "components");
+
+    TempComp* comp1_2 = world.getComponent<TempComp>(comp1);
+    TempComp2* comp2_2 = world.getComponent<TempComp2>(comp2);
+    torii::info({*comp1_2, " | ", *comp2_2}, "components");
 
     torii::trace({"Starting torii3d!"}, "system");
 

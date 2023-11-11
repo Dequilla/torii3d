@@ -96,5 +96,15 @@ target_include_directories(${PROGRAM_NAME} PRIVATE ${LIBRARY_INCLUDE_FOLDER} ${P
 target_link_libraries(${PROGRAM_NAME} ${LIBRARY_NAME})
 set_property(TARGET ${PROGRAM_NAME} PROPERTY CXX_STANDARD 20)
 
+if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    message("Debug build!")
+    target_compile_definitions(${LIBRARY_NAME} PRIVATE _DEBUG)
+    target_compile_definitions(${PROGRAM_NAME} PRIVATE _DEBUG)
+else()
+    message("Release build!")
+    target_compile_definitions(${LIBRARY_NAME} PRIVATE _RELEASE)
+    target_compile_definitions(${PROGRAM_NAME} PRIVATE _DEBUG)
+endif()
+
 set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall -g -O3")
 set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall -O0")

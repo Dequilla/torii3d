@@ -1,4 +1,4 @@
 #!/bin/bash
-./build.sh
+./build_debug.sh
 
-./build/release/torii
+./build/debug/torii

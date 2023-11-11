@@ -7,16 +7,15 @@
 
 namespace torii
 {
-    template<typename Type>
-    class Component 
+    class IComponent
     {
-    private:
+    protected:
         Handle m_handle;
-    
-    public:
-        Type data;
+        inline static Handle m_nextHandle = 0;
 
-        Component(Type data);
+    public:
+        IComponent() 
+            : m_handle(m_nextHandle++) {}
 
         inline Handle getHandle() { return m_handle; }
 
@@ -27,8 +26,17 @@ namespace torii
     };
 
     template<typename Type>
+    class Component : public IComponent
+    {
+    public:
+        Type data;
+
+        Component(Type data);
+    };
+
+    template<typename Type>
     Component<Type>::Component(Type data)
-        : data(data)
+        : data(data), IComponent()
     {
     }
 }

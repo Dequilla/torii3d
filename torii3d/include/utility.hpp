@@ -5,6 +5,20 @@
 #include <iostream>
 #include <cstring>
 #include <cstdint>
+#include <cassert>
+
+#include "settings.hpp"
+#include "logger.hpp"
+
+#ifdef _DEBUG 
+inline void torii_assert_impl(bool exp)
+{
+    assert(exp);
+}
+#define TORII_ASSERT(x) assert(x)
+#else
+#define TORII_ASSERT(x)
+#endif
 
 namespace torii
 { 
