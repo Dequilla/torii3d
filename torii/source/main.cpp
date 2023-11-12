@@ -16,16 +16,8 @@
 #include "ecs/component.hpp"
 #include "ecs/world.hpp"
 
-struct TempComp
-{
-    int x, y;
 
-    operator std::string() const {
-        return std::to_string(x) + ", " + std::to_string(y);
-    }
-};
-
-struct TempComp2
+struct Position
 {
     int x, y, z;
 
@@ -37,20 +29,20 @@ struct TempComp2
 int main(int argc, char** argv)
 {
     torii::World world;
-    world.registerComponentType<TempComp>();
-    world.registerComponentType<TempComp2>();
+    world.registerComponentType<Position>();
 
-    torii::Handle h1 = world.entity(), h2 = world.entity();
-    torii::info({*world.entity(h1), *world.entity(h2)}, "testing");
+    torii::Handle h1 = world.entity();
+    torii::info({*world.entity(h1)}, "Entity");
 
-    torii::Handle comp1 = world.registerComponent(TempComp { 1, 2 });
-    torii::Handle comp2 = world.registerComponent(TempComp2 { 2, 3, 4 });
-    torii::info({std::to_string(comp1), " | ", std::to_string(comp2)}, "components");
+    torii::Handle posCompHandle = world.component(Position { 2, 3, 4 });
+    torii::info({std::to_string(posCompHandle)}, "Component");
 
-    TempComp* comp1_2 = world.getComponent<TempComp>(comp1);
-    TempComp2* comp2_2 = world.getComponent<TempComp2>(comp2);
-    torii::info({*comp1_2, " | ", *comp2_2}, "components");
+    Position* posComp = world.component<Position>(posCompHandle);
+    torii::info({*posComp}, "Component");
 
+
+    /////////////////////////////////
+    // Actual program start
     torii::trace({"Starting torii3d!"}, "system");
 
     torii::Display display("Test", {0, 0}, {1280, 720}); 

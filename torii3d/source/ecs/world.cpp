@@ -8,7 +8,7 @@ namespace torii
 
     World::~World()
     {
-        for(auto component : m_components)
+        for(auto component : m_componentsMap)
         {
             delete component.second;
         }

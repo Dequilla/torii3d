@@ -21,7 +21,7 @@ namespace torii
         Handle m_nextHandleEntity = 0;
         std::map<Handle, Entity> m_entities;
         std::unordered_map<std::type_index, std::vector<IComponent*>> m_componentsByType;
-        std::map<Handle, IComponent*> m_components;
+        std::map<Handle, IComponent*> m_componentsMap;
 
     public:
         World();
@@ -38,10 +38,10 @@ namespace torii
         bool registerComponentType();
 
         template<typename Type>
-        Handle registerComponent(Type component);
+        Handle component(Type component);
 
         template<typename Type>
-        Type* getComponent(Handle comp);
+        Type* component(Handle comp) const;
 
     };
 
@@ -58,7 +58,7 @@ namespace torii
     }
 
     template<typename Type>
-    Handle World::registerComponent(Type componentData)
+    Handle World::component(Type componentData)
     {
         auto itVec = m_componentsByType.find(typeid(Type));
         if( itVec == m_componentsByType.end() )
@@ -70,16 +70,16 @@ namespace torii
         Component<Type>* c = new Component<Type>(componentData);
         itVec->second.push_back(c);
 
-        m_components.emplace(c->getHandle(), c);
+        m_componentsMap.emplace(c->getHandle(), c);
 
         return c->getHandle();
     }
 
     template<typename Type>
-    Type* World::getComponent(Handle cHandle)
+    Type* World::component(Handle cHandle) const
     {
-        auto itC = m_components.find(cHandle);
-        if( itC != m_components.end() )
+        auto itC = m_componentsMap.find(cHandle);
+        if( itC != m_componentsMap.end() )
         {
             return &static_cast<Component<Type>*>(itC->second)->data;
         }
