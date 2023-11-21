@@ -1,0 +1,51 @@
+Tanken för testningen:
+
+TEST_SECTION("Name")
+{
+
+    TEST("Test1")
+    {
+        ENSURE(expression, "Error message");
+    }
+
+    TEST("Test2")
+    {
+        ...
+    }
+
+    TEST_SECTION("Nested")
+    {
+
+        TEST("TestInner1")
+        {
+            ...
+        }
+
+        TEST("TestInner2")
+        {
+           ... 
+        }
+
+    }
+
+}
+
+Output:
+Name
+{
+
+    => Test1 running: Success
+    => Test2 running: Failed with "Error message here"
+
+    Nested
+    {
+        => TestInner1: Success
+        => TestInner2: Success
+    }
+
+} 
+
+Sammanfattning sektioner:
+=> Name <success>
+    => Nested <success>
+
