@@ -1,5 +1,9 @@
 #include <iostream>
 
+#include "idyll.hpp"
+
+#include "torii.hpp"
+
 #include "settings.hpp"
 #if OPENGL_ENABLED == 1
 #include <GL/gl.h>
@@ -10,36 +14,24 @@
 #include "display.hpp"
 
 #include "model.hpp"
+#include "platform/OpenGL/mesh_impl_opengl.hpp"
 
-
-#include "ecs/entity.hpp"
-#include "ecs/component.hpp"
-#include "ecs/world.hpp"
-
-
-struct Position
-{
-    int x, y, z;
-
-    operator std::string() const {
-        return std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z);
-    }
-};
+#include "resource/resource.hpp"
+#include "resource/text_document.hpp"
 
 int main(int argc, char** argv)
 {
-    torii::World world;
-    world.registerComponentType<Position>();
+    idyll::test();
 
-    torii::Handle h1 = world.entity();
-    torii::info({*world.entity(h1)}, "Entity");
+    torii::init();
 
-    torii::Handle posCompHandle = world.component(Position { 2, 3, 4 });
-    torii::info({std::to_string(posCompHandle)}, "Component");
+    ////////////////////////
+    // testing
 
-    Position* posComp = world.component<Position>(posCompHandle);
-    torii::info({*posComp}, "Component");
+    torii::Mesh mesh = torii::temp_create_square();
 
+    // testing
+    ////////////////////////
 
     /////////////////////////////////
     // Actual program start

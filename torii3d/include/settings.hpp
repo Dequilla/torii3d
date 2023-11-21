@@ -2,6 +2,7 @@
 #define ___TORII_SETTINGS_H__
 
 #define X11_ENABLED 1
+#define WIN_ENABLED 0
 
 #define OPENGL_ENABLED 1
 
