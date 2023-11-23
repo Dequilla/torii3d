@@ -19,9 +19,11 @@
 #include "resource/resource.hpp"
 #include "resource/text_document.hpp"
 
+#include "tests/root.hpp"
+
 int main(int argc, char** argv)
-{
-    idyll::test();
+{ 
+    idyll_test_environment_env1();
 
     torii::init();
 
