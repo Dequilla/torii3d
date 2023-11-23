@@ -1,7 +1,5 @@
 #include "idyll.hpp"
 
-#include <iomanip>
-
 namespace idyll
 {
     bool Section::run(size_t level)
@@ -87,4 +85,5 @@ namespace idyll
             bool result = section.run(0);
         }
     }
+    
 }

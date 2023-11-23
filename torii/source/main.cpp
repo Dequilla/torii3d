@@ -1,6 +1,9 @@
 #include <iostream>
 
+#ifdef _RUN_TESTS
 #include "idyll.hpp"
+#include "tests/root.hpp"
+#endif
 
 #include "torii.hpp"
 
@@ -19,12 +22,12 @@
 #include "resource/resource.hpp"
 #include "resource/text_document.hpp"
 
-#include "tests/root.hpp"
 
 int main(int argc, char** argv)
 { 
-    idyll_test_environment_env1();
-
+#ifdef _RUN_TESTS
+    IDYLL_RUN(env1);
+#else
     torii::init();
 
     ////////////////////////
@@ -80,5 +83,7 @@ int main(int argc, char** argv)
         display.presentFrame();
     }
 
+#endif
+    
     return 0;
 }

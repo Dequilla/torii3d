@@ -12,6 +12,9 @@
 //////////////////////////////
 // Macros
 
+#define IDYLL_RUN(env) \
+idyll_test_environment_##env()
+
 // Environment
 #define TEST_ENV(name)\
 void idyll_test_environment_##name(){\
@@ -74,7 +77,5 @@ namespace idyll
 
         void run();
     };
-
-
 
 }

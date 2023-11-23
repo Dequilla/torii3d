@@ -25,6 +25,8 @@ project(
     LANGUAGES CXX
 )
 
+option(BUILD_TESTS "Build for tests." OFF)
+
 #####################################
 # Source files
 #####################################
@@ -58,6 +60,11 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 else()
     message("Release build!")
     target_compile_definitions(${PROGRAM_NAME} PRIVATE _RELEASE)
+endif()
+
+if(BUILD_TESTS)
+    message("Building for tests!")
+    target_compile_definitions(${PROGRAM_NAME} PRIVATE _RUN_TESTS)
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall -g -O3")
