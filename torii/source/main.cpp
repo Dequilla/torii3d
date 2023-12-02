@@ -1,8 +1,7 @@
 #include <iostream>
 
 #ifdef _RUN_TESTS
-#include "idyll.hpp"
-#include "tests/root.hpp"
+#include "tests/tests.hpp"
 #endif
 
 #include "torii.hpp"
@@ -22,11 +21,10 @@
 #include "resource/resource.hpp"
 #include "resource/text_document.hpp"
 
-
 int main(int argc, char** argv)
 { 
 #ifdef _RUN_TESTS
-    IDYLL_RUN(env1);
+    tests::run_all_tests();
 #else
     torii::init();
 

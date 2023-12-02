@@ -80,9 +80,12 @@ namespace idyll
     {
         std::cout << "Running tests!" << std::endl;
 
+        bool finalResult = true;
         for(auto& section : sections)
         {
             bool result = section.run(0);
+            if(result == false)
+                finalResult = false;
         }
     }
     

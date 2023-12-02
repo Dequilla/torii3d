@@ -6,8 +6,6 @@
 namespace torii
 {
 
-    using Handle = uint64_t;
-
 }
 
 #endif

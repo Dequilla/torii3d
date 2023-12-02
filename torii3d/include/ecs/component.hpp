@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "utility.hpp"
 #include "ecs/ecs_utility.hpp"
 
 namespace torii
@@ -36,9 +37,7 @@ namespace torii
 
     template<typename Type>
     Component<Type>::Component(Type data)
-        : data(data), IComponent()
-    {
-    }
+        : data(data), IComponent() {}
 }
 
 #endif

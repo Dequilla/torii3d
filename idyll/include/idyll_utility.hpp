@@ -7,6 +7,7 @@
 // Macros
 #define CONCAT(x, y) x##y
 #define C(x, y) CONCAT(x, y)
+#define IDYLL_TO_STR(x) #x
 
 #define IDYLL_DEFER()\
 idyll::Defer C(_idyll_defer, __LINE__);\

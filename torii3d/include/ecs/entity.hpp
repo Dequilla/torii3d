@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "utility.hpp"
 #include "ecs/ecs_utility.hpp"
 
 namespace torii

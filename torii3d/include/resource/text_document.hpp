@@ -7,17 +7,7 @@
 
 namespace torii
 {
-    class TextDocument
-    {
-    public:
-        std::string data;
-    };
-
-    class TextDocumentManager : public ResourceManager<TextDocument>
-    {
-    public:
-        TextDocument* load(const std::string&) override;
-    };
+    
     
 }
 

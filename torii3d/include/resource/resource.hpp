@@ -4,33 +4,42 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <type_traits>
+#include <typeindex>
 
 #include "utility.hpp"
+#include "logger.hpp"
 
 namespace torii
 {
-    template<typename ResType>
+   
+    template<typename Type>
     class ResourceManager
     {
     protected:
-        std::unordered_map<std::string, ResType*> m_mapResources;
-        std::vector<ResType> m_resources;
+        std::unordered_map<std::string, Type*> m_resources;
 
     public:
-        virtual ResType* load(const std::string& ) = 0;
-        virtual ResType* get(const std::string& );
+        Type* get( const std::string& );
+        
+        virtual Type* load( const std::string& ) = 0;
+        virtual Type* load( const std::string&, const std::vector<uint8_t>& ) = 0;
     };
-
-    template<typename ResType>
-    ResType* ResourceManager<ResType>::get(const std::string& path )
+    
+    template<typename Type>
+    Type* ResourceManager<Type>::get( const std::string& id )
     {
-        auto itResource = m_mapResources.find(path);
-        if(itResource == m_mapResources.end())
-            return load(path);
+        auto itRes = m_resources.find(id);
+        if(itRes == m_resources.end())
+        {
+            return load(id);
+        } 
         else
-            return itResource->second;
+        {
+            return (*itRes).second;
+        }
     }
-
+        
 }
 
 #endif

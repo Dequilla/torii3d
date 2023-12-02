@@ -7,10 +7,17 @@
 #include <string>
 #include <optional>
 
-#include "utility.hpp"
+#include "idyll_utility.hpp"
 
 //////////////////////////////
 // Macros
+
+
+#define IDYLL_BOOL_RES idyll_tests_result
+#define IDYLL_ASSERT(exp) \
+if(!(exp)) { \
+IDYLL_BOOL_RES = false; \
+}
 
 #define IDYLL_RUN(env) \
 idyll_test_environment_##env()
@@ -36,9 +43,12 @@ IDYLL_DEFER()\
 
 // Test
 #define TEST(name)\
-env.addTest(name, []() -> bool {
+env.addTest(name, []() -> bool { \
+bool IDYLL_BOOL_RES = true; 
 
-#define TEST_END });
+#define TEST_END \
+return IDYLL_BOOL_RES; \
+});
 
 // Macros
 //////////////////////////////
@@ -71,7 +81,7 @@ namespace idyll
 
         std::vector<Section> sections;
         std::map<std::string, Section*> allSections;
-        
+        #define STRING(s) #s
         void addSection(std::string name);
         void addTest(std::string name, TestCallback callback);
 
